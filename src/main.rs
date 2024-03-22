@@ -5,13 +5,15 @@ mod parser;
 use anyhow::Result;
 use rustyline::{error::ReadlineError, DefaultEditor};
 
+const HISTORY_PATH: &str = "./.iron-history";
+
 fn main() -> Result<()> {
     println!(
         "IronCalc Version {}. Made by grqphical (https://github.com/grqphical/IronCalc)",
         env!("CARGO_PKG_VERSION")
     );
     let mut rl = DefaultEditor::new()?;
-    rl.load_history(".");
+    rl.load_history(HISTORY_PATH);
 
     loop {
         let readline = rl.readline(">> ");
@@ -42,5 +44,6 @@ fn main() -> Result<()> {
             }
         }
     }
+    rl.save_history(HISTORY_PATH)?;
     return Ok(());
 }
