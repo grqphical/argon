@@ -35,11 +35,9 @@ PI - 3.14159265358979
 E - 2.718281828459045
 TAU - 6.283185307179586
 
-<<<<<<< Updated upstream
+
 # Built-in functions
-=======
-## BUILT IN FUNCTIONS
->>>>>>> Stashed changes
+
 
 There are many built in functions within Argon such as trignometric functions and logarithimic functions.
 
