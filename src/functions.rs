@@ -460,3 +460,85 @@ pub fn median(args: Vec<f64>) -> Result<f64> {
         Ok(args[mid])
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_factorial() {
+        // Test case 1: factorial of 5
+        let result = factorial(vec![5.0]).unwrap();
+        assert_eq!(result, 120.0);
+
+        // Test case 2: factorial of 0
+        let result = factorial(vec![0.0]).unwrap();
+        assert_eq!(result, 1.0);
+    }
+
+    #[test]
+    fn test_pow() {
+        // Test case 1: 2 raised to the power of 3
+        let result = pow(vec![2.0, 3.0]).unwrap();
+        assert_eq!(result, 8.0);
+
+        // Test case 2: 0 raised to any power
+        let result = pow(vec![0.0, 5.0]).unwrap();
+        assert_eq!(result, 0.0);
+    }
+
+    #[test]
+    fn test_max() {
+        // Test case 1: maximum value among [1, 2, 3, 4, 5]
+        let result = max(vec![1.0, 2.0, 3.0, 4.0, 5.0]).unwrap();
+        assert_eq!(result, 5.0);
+
+        // Test case 2: maximum value among [-1, -2, -3, -4, -5]
+        let result = max(vec![-1.0, -2.0, -3.0, -4.0, -5.0]).unwrap();
+        assert_eq!(result, -1.0);
+    }
+
+    #[test]
+    fn test_min() {
+        // Test case 1: minimum value among [1, 2, 3, 4, 5]
+        let result = min(vec![1.0, 2.0, 3.0, 4.0, 5.0]).unwrap();
+        assert_eq!(result, 1.0);
+
+        // Test case 2: minimum value among [-1, -2, -3, -4, -5]
+        let result = min(vec![-1.0, -2.0, -3.0, -4.0, -5.0]).unwrap();
+        assert_eq!(result, -5.0);
+    }
+
+    #[test]
+    fn test_sum() {
+        // Test case 1: sum of [1, 2, 3, 4, 5]
+        let result = sum(vec![1.0, 2.0, 3.0, 4.0, 5.0]).unwrap();
+        assert_eq!(result, 15.0);
+
+        // Test case 2: sum of [-1, -2, -3, -4, -5]
+        let result = sum(vec![-1.0, -2.0, -3.0, -4.0, -5.0]).unwrap();
+        assert_eq!(result, -15.0);
+    }
+
+    #[test]
+    fn test_avg() {
+        // Test case 1: average of [1, 2, 3, 4, 5]
+        let result = avg(vec![1.0, 2.0, 3.0, 4.0, 5.0]).unwrap();
+        assert_eq!(result, 3.0);
+
+        // Test case 2: average of [-1, -2, -3, -4, -5]
+        let result = avg(vec![-1.0, -2.0, -3.0, -4.0, -5.0]).unwrap();
+        assert_eq!(result, -3.0);
+    }
+
+    #[test]
+    fn test_median() {
+        // Test case 1: median of [1, 2, 3, 4, 5]
+        let result = median(vec![1.0, 2.0, 3.0, 4.0, 5.0]).unwrap();
+        assert_eq!(result, 3.0);
+
+        // Test case 2: median of [-1, -2, -3, -4, -5]
+        let result = median(vec![-1.0, -2.0, -3.0, -4.0, -5.0]).unwrap();
+        assert_eq!(result, -3.0);
+    }
+}
