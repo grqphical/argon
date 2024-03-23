@@ -12,6 +12,8 @@ pub enum Token {
     Modulus,
     RightParen,
     LeftParen,
+    Identifier(String),
+    Equals,
 }
 
 /// Preprocesses the equation by replacing constants with their values.
@@ -61,6 +63,23 @@ fn make_number(equation: &String, index: &mut usize) -> Result<Token> {
     return Ok(Token::Number(num));
 }
 
+fn make_identifier(equation: &String, index: &mut usize) -> Result<Token> {
+    let mut char = equation.chars().nth(*index).unwrap_or(' ');
+    let mut identifier = String::new();
+
+    loop {
+        if char.is_alphanumeric() {
+            identifier.push(char);
+        } else {
+            break;
+        }
+        *index += 1;
+        char = equation.chars().nth(*index).unwrap_or(' ');
+    }
+
+    return Ok(Token::Identifier(identifier));
+}
+
 /// The main lexer function that generates tokens from the equation.
 ///
 /// # Example
@@ -86,15 +105,27 @@ pub fn generate_tokens(equation: String) -> Result<Vec<Token>> {
             continue;
         }
 
+        if char.is_alphabetic() {
+            let token = make_identifier(&equation, &mut index);
+            match token {
+                Ok(token) => result.push(token),
+                Err(err) => {
+                    return Err(err);
+                }
+            }
+            continue;
+        }
+
         match char {
             '+' => result.push(Token::Plus),
             '-' => result.push(Token::Minus),
             '*' => result.push(Token::Multiply),
             '/' => result.push(Token::Divide),
-            '(' => result.push(Token::RightParen),
-            ')' => result.push(Token::LeftParen),
+            '(' => result.push(Token::LeftParen),
+            ')' => result.push(Token::RightParen),
             '^' => result.push(Token::Power),
             '%' => result.push(Token::Modulus),
+            '=' => result.push(Token::Equals),
             ' ' | '\n' | '\t' | '\r' => (),
             _ => return Err(format_err!("Unknown character '{}'", char)),
         }

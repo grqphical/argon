@@ -2,6 +2,8 @@ mod interpreter;
 mod lexer;
 mod parser;
 
+use std::collections::HashMap;
+
 use anyhow::Result;
 use rustyline::{error::ReadlineError, DefaultEditor};
 
@@ -9,11 +11,13 @@ const HISTORY_PATH: &str = "./.iron-history";
 
 fn main() -> Result<()> {
     println!(
-        "IronCalc Version {}. Made by grqphical (https://github.com/grqphical/IronCalc)",
+        "IronCalc Version {}. Made by grqphical (https://github.com/grqphical/IronCalc). Type 'exit' to exit.",
         env!("CARGO_PKG_VERSION")
     );
     let mut rl = DefaultEditor::new()?;
     rl.load_history(HISTORY_PATH);
+
+    let mut variables: HashMap<String, f64> = HashMap::new();
 
     loop {
         let readline = rl.readline(">> ");
@@ -26,8 +30,8 @@ fn main() -> Result<()> {
 
                 let tokens = lexer::generate_tokens(equation).unwrap();
 
-                let ast = parser::parse_expr(&tokens);
-                let result = interpreter::interpret(&ast).unwrap();
+                let ast = parser::parse_expr(&tokens, &mut variables).unwrap();
+                let result = interpreter::interpret(&ast, &mut variables).unwrap();
                 println!("{}", result);
             }
             Err(ReadlineError::Interrupted) => {
