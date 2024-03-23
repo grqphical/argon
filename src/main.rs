@@ -8,7 +8,7 @@ use std::collections::HashMap;
 use anyhow::Result;
 use rustyline::{error::ReadlineError, DefaultEditor};
 
-const HISTORY_PATH: &str = "./.iron-history";
+const HISTORY_PATH: &str = "./.argon-history";
 
 fn main() -> Result<()> {
     println!(
