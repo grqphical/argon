@@ -1,4 +1,5 @@
 # Argon Calculator
+
 [![Rust CI](https://github.com/grqphical/argon/actions/workflows/Rust.yml/badge.svg)](https://github.com/grqphical/argon/actions/workflows/Rust.yml)
 
 A superpowered CLI calculator
@@ -34,7 +35,11 @@ PI - 3.14159265358979
 E - 2.718281828459045
 TAU - 6.283185307179586
 
+<<<<<<< Updated upstream
 # Built-in functions
+=======
+## BUILT IN FUNCTIONS
+>>>>>>> Stashed changes
 
 There are many built in functions within Argon such as trignometric functions and logarithimic functions.
 
@@ -68,3 +73,7 @@ There are many built in functions within Argon such as trignometric functions an
 - `avg(numbers)`: Requires a list of numbers. Returns the average of all numbers in the list.
 - `median(numbers)`: Requires a list of numbers. Returns the median of the numbers in the list.
 - `factorial(number)`: Requires one number. Returns the factorial of the given number.
+
+## File as input
+
+If you have lots of equations or a complex math function in a file, you can load it by passing it as an argument and Argon will run the file and print the output to stdout

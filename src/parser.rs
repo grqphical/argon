@@ -83,6 +83,9 @@ fn parse_addition_subtraction(
     i: usize,
     variables: &mut HashMap<String, f64>,
 ) -> Result<(usize, Expr)> {
+    if i >= tokens.len() {
+        return Err(format_err!("Unexpected end of input"));
+    }
     let (mut i, mut lhs) = parse_multiplication_division(tokens, i, variables)?;
 
     while i < tokens.len() {
@@ -131,6 +134,9 @@ fn parse_multiplication_division(
     i: usize,
     variables: &mut HashMap<String, f64>,
 ) -> Result<(usize, Expr)> {
+    if i >= tokens.len() {
+        return Err(format_err!("Unexpected end of input"));
+    }
     let (mut i, mut lhs) = parse_exponents(tokens, i, variables)?;
 
     while i < tokens.len() {
@@ -174,6 +180,9 @@ fn parse_exponents(
     i: usize,
     variables: &mut HashMap<String, f64>,
 ) -> Result<(usize, Expr)> {
+    if i >= tokens.len() {
+        return Err(format_err!("Unexpected end of input"));
+    }
     let (mut i, mut lhs) = parse_unary(tokens, i, variables)?;
 
     while i < tokens.len() {
@@ -215,6 +224,9 @@ fn parse_unary(
     i: usize,
     variables: &mut HashMap<String, f64>,
 ) -> Result<(usize, Expr)> {
+    if i >= tokens.len() {
+        return Err(format_err!("Unexpected end of input"));
+    }
     match &tokens[i] {
         Token::Number(n) => Ok((i + 1, Expr::Number(*n))),
         Token::Identifier(name) => match variables.get(name) {
@@ -264,6 +276,9 @@ fn parse_variable_declaration(
     i: usize,
     variables: &mut HashMap<String, f64>,
 ) -> Result<(usize, Expr)> {
+    if i >= tokens.len() {
+        return Err(format_err!("Unexpected end of input"));
+    }
     match &tokens[i] {
         Token::Identifier(name) => {
             if tokens.get(i + 1) == Some(&Token::Equals) {
