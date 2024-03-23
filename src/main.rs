@@ -16,7 +16,7 @@ fn repl() {
         env!("CARGO_PKG_VERSION")
     );
     let mut rl = DefaultEditor::new().unwrap();
-    rl.load_history(HISTORY_PATH);
+    let _ = rl.load_history(HISTORY_PATH);
 
     let mut variables: HashMap<String, f64> = HashMap::new();
     let mut functions = functions::load_functions();
@@ -25,7 +25,7 @@ fn repl() {
         let readline = rl.readline("(argon)>> ");
         match readline {
             Ok(equation) => {
-                rl.add_history_entry(equation.as_str());
+                let _ = rl.add_history_entry(equation.as_str());
                 if equation.to_lowercase() == "exit" {
                     break;
                 }
