@@ -9,6 +9,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0952808a6c2afd1aa8947271f3a60f1a6763c7b912d210184c5149b5cf147247"
 
 [[package]]
+name = "argon"
+version = "1.0.0"
+dependencies = [
+ "anyhow",
+ "rustyline",
+]
+
+[[package]]
 name = "bitflags"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -75,14 +83,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e3d1354bf6b7235cb4a0576c2619fd4ed18183f689b12b006a0ee7329eeff9a5"
 dependencies = [
  "windows-sys",
-]
-
-[[package]]
-name = "iron-calc"
-version = "1.0.0"
-dependencies = [
- "anyhow",
- "rustyline",
 ]
 
 [[package]]

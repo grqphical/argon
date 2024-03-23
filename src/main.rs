@@ -1,3 +1,4 @@
+mod functions;
 mod interpreter;
 mod lexer;
 mod parser;
@@ -11,13 +12,14 @@ const HISTORY_PATH: &str = "./.iron-history";
 
 fn main() -> Result<()> {
     println!(
-        "IronCalc Version {}. Made by grqphical (https://github.com/grqphical/IronCalc). Type 'exit' to exit.",
+        "Argon Version {}. Made by grqphical (https://github.com/grqphical/IronCalc). Type 'exit' to exit.",
         env!("CARGO_PKG_VERSION")
     );
     let mut rl = DefaultEditor::new()?;
     rl.load_history(HISTORY_PATH);
 
     let mut variables: HashMap<String, f64> = HashMap::new();
+    let mut functions = functions::load_functions();
 
     loop {
         let readline = rl.readline(">> ");
@@ -31,7 +33,7 @@ fn main() -> Result<()> {
                 let tokens = lexer::generate_tokens(equation).unwrap();
 
                 let ast = parser::parse_expr(&tokens, &mut variables).unwrap();
-                let result = interpreter::interpret(&ast, &mut variables).unwrap();
+                let result = interpreter::interpret(&ast, &mut variables, &mut functions).unwrap();
                 println!("{}", result);
             }
             Err(ReadlineError::Interrupted) => {

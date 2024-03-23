@@ -28,6 +28,10 @@ pub enum Expr {
         name: String,
         value: f64,
     },
+    Function {
+        name: String,
+        args: Vec<Expr>,
+    },
 }
 
 /// Parses a list of tokens into an AST.
@@ -272,6 +276,24 @@ fn parse_variable_declaration(
                             Expr::Number(n) => n,
                             _ => return Err(format_err!("Expected number")),
                         },
+                    },
+                ))
+            } else if tokens.get(i + 1) == Some(&Token::LeftParen) {
+                let mut args = Vec::new();
+                let mut index = i + 2;
+                while tokens.get(index) != Some(&Token::RightParen) {
+                    let (new_index, expr) = parse_addition_subtraction(tokens, index, variables)?;
+                    args.push(expr);
+                    index = new_index;
+                    if tokens.get(index) == Some(&Token::Comma) {
+                        index += 1;
+                    }
+                }
+                Ok((
+                    index + 1,
+                    Expr::Function {
+                        name: name.clone(),
+                        args,
                     },
                 ))
             } else {

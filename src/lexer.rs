@@ -14,6 +14,7 @@ pub enum Token {
     LeftParen,
     Identifier(String),
     Equals,
+    Comma,
 }
 
 /// Preprocesses the equation by replacing constants with their values.
@@ -126,6 +127,7 @@ pub fn generate_tokens(equation: String) -> Result<Vec<Token>> {
             '^' => result.push(Token::Power),
             '%' => result.push(Token::Modulus),
             '=' => result.push(Token::Equals),
+            ',' => result.push(Token::Comma),
             ' ' | '\n' | '\t' | '\r' => (),
             _ => return Err(format_err!("Unknown character '{}'", char)),
         }
