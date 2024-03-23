@@ -1,4 +1,5 @@
 # Argon Calculator
+[![Rust CI](https://github.com/grqphical/argon/actions/workflows/Rust.yml/badge.svg)](https://github.com/grqphical/argon/actions/workflows/Rust.yml)
 
 A superpowered CLI calculator
 
