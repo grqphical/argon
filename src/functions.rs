@@ -43,8 +43,36 @@ pub fn load_functions() -> HashMap<String, CalculatorFunction> {
     functions.insert("sum".to_string(), sum);
     functions.insert("avg".to_string(), avg);
     functions.insert("median".to_string(), median);
+    functions.insert("root".to_string(), root);
+    functions.insert("exp".to_string(), exp);
 
     functions
+}
+
+/// Calculates the nth root of a number
+///
+/// # Arguments
+///
+/// * `args` - A vector containing two numbers: the number and the root.
+///     
+/// # Returns
+///
+/// The nth root of the number.
+pub fn root(args: Vec<f64>) -> Result<f64> {
+    Ok(args[0].powf(1.0 / args[1]))
+}
+
+/// Calculates the exponential of a number.
+///
+/// # Arguments
+///
+/// * `args` - A vector containing a single number.
+///
+/// # Returns
+///
+/// The exponential of the number.
+pub fn exp(args: Vec<f64>) -> Result<f64> {
+    Ok(args[0].exp())
 }
 
 /// Calculates the square root of a number.
