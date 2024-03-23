@@ -3,11 +3,11 @@
 
 A superpowered CLI calculator
 
-## BASIC USAGE
+## Basic Usage
 
 Enter any mathematical statement in the REPL and Argon will calculate it
 
-### OPERATORS
+### Operators
 
 - `+` Addition
 - `-` Subtraction
@@ -20,7 +20,7 @@ Argon follows the BEDMAS (Brackets, Exponents, Division, Mulitplication, Additio
 Order of Operations and whenever there is two terms in the same order (eg. Two multiplication statements),
 it goes from left to right
 
-## VARIABLES
+## Variables
 
 In Argon, you can declare variables with this syntax:
 NAME = VALUE
